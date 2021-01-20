@@ -1,0 +1,13 @@
+.toast {
+  height: 65px;
+  top: 195px;
+  right: 8px;
+  text-align: center;
+  background-color: rgb(138, 81, 81);
+  color: white;
+  border-radius: 4px;
+}
+
+.progress {
+  background: transparent;
+}

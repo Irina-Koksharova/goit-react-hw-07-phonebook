@@ -1,0 +1,42 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+}
+
+.item:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.name,
+.number {
+  display: flex;
+  align-self: center;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.name {
+  width: 50%;
+}
+
+.number {
+  font-size: 18px;
+}
+
+.button {
+  min-width: 50px;
+  min-height: 30px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.button:hover,
+.button:focus {
+  transform: scale(1.05);
+}
