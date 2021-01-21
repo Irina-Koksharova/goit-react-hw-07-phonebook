@@ -2,8 +2,11 @@ import { useSelector } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getContacts } from '../../redux/selectors';
+import {
+  mainContainer,
+  subContainer,
+} from '../../styles/container-inline-styles';
 import Container from '../Container';
-import Section from '../Section';
 import Title from '../Title';
 import ContactsForm from '../ContactsForm';
 import Filter from '../Filter';
@@ -13,19 +16,19 @@ const App = () => {
   const contacts = useSelector(getContacts);
 
   return (
-    <Container>
-      <Section>
+    <Container style={mainContainer}>
+      <Container style={subContainer}>
         <Title children={'Phonebook'} />
         <ContactsForm />
         <ToastContainer autoClose={3000} limit={1} style={{ width: '352px' }} />
-      </Section>
+      </Container>
 
       {contacts.length > 0 && (
-        <Section>
+        <Container style={subContainer}>
           <Title children={'Contacts'} style={{ fontSize: '22px' }} />
           <Filter />
           <ContactsList />
-        </Section>
+        </Container>
       )}
     </Container>
   );

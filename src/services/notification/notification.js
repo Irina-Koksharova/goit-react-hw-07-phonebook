@@ -5,7 +5,7 @@ const notification = message => {
   toast.dark(message, {
     className: `${s.toast}`,
     progressClassName: `${s.progress}`,
-    position: toast.POSITION.TOP_RIGHT,
+    position: toast.POSITION.TOP_LEFT,
   });
 };
 
