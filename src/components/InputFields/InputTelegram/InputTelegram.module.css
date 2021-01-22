@@ -23,9 +23,3 @@
 .input:focus::placeholder {
   color: transparent;
 }
-
-.errorMessage {
-  margin: 0;
-  font-size: 15px;
-  color: red;
-}

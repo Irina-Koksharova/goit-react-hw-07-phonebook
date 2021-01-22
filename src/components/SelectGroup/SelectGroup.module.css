@@ -1,4 +1,4 @@
-.input {
+.select {
   width: 100%;
   height: 35px;
   margin: 5px 0px 20px;
@@ -11,21 +11,15 @@
   outline: none;
 }
 
-.input:focus {
+.select:focus {
   transform: scale(1.01);
 }
 
-.input::placeholder {
+.select::placeholder {
   font-size: 15px;
   text-transform: capitalize;
 }
 
-.input:focus::placeholder {
+.select:focus::placeholder {
   color: transparent;
-}
-
-.errorMessage {
-  margin: 0;
-  font-size: 15px;
-  color: red;
 }

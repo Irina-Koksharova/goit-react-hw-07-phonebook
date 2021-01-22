@@ -3,7 +3,7 @@ import s from './InputNumber.module.css';
 
 const InputNumber = ({ name, register, errors }) => {
   return (
-    <li className={s.formItem}>
+    <li>
       <input
         className={s.input}
         id={name}
@@ -17,7 +17,7 @@ const InputNumber = ({ name, register, errors }) => {
           },
           pattern: {
             value: /^[0-9-]+$/,
-            message: 'The phone number must be only numbers',
+            message: 'Number is not valid',
           },
         })}
       ></input>
