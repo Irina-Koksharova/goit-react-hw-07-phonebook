@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import { BiShowAlt } from 'react-icons/bi';
 // import { AiOutlineEdit } from 'react-icons/ai';
-// import { MdDelete } from 'react-icons/md';
+import { MdDelete } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 import s from './ContactItem.module.css';
 import IconButton from '../IconButton';
 
-const ContactItem = ({ id, name, onDelete }) => {
+const ContactItem = ({ id, name, onChange, onDelete }) => {
   return (
     <li className={s.contact}>
       <p className={s.name}>{name}</p>
@@ -15,7 +15,7 @@ const ContactItem = ({ id, name, onDelete }) => {
         <li className={s.buttonItem}>
           <IconButton
             type="button"
-            // onClick={() => onDelete(id)}
+            onClick={() => onChange(id)}
             aria-label="Кнопка 'Просмотреть контакт'"
             style={{ width: '30px', height: '30px', backgroundColor: ' rgb(85, 83, 83)' }}
           >
@@ -24,18 +24,19 @@ const ContactItem = ({ id, name, onDelete }) => {
             </IconContext.Provider>
           </IconButton>
         </li>
-        {/* <li className={s.buttonItem}>
+        <li className={s.buttonItem}>
           <IconButton
             type="button"
             onClick={() => onDelete(id)}
             aria-label="Кнопка 'Удалить контакт'"
-            style={{ width: '30px', height: '30px', backgroundColor: ' rgb(85, 83, 83)' }}>
+            style={{ width: '30px', height: '30px', backgroundColor: ' rgb(85, 83, 83)' }}
+          >
             <IconContext.Provider value={{ className: `${s.reactIcons}` }}>
-              <AiOutlineEdit />
+              <MdDelete />
             </IconContext.Provider>
           </IconButton>
         </li>
-        <li className={s.buttonItem}>
+        {/* <li className={s.buttonItem}>
           <IconButton
             type="button"
             onClick={() => onDelete(id)}
