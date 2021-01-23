@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { MdDone } from 'react-icons/md';
+import { IconContext } from 'react-icons';
 import s from './ContactsForm.module.css';
 import { addContact } from '../../redux/actions';
 import { getContacts } from '../../redux/selectors';
@@ -13,6 +15,7 @@ import InputEmail from '../InputFields/InputEmail';
 import InputSkype from '../InputFields/InputSkype';
 import InputTelegram from '../InputFields/InputTelegram';
 import SelectGroup from '../SelectGroup';
+import IconButton from '../IconButton';
 
 const ContactsForm = () => {
   const contactsList = useSelector(getContacts);
@@ -54,41 +57,37 @@ const ContactsForm = () => {
   return (
     <form className={s.form} onSubmit={handleSubmit(onFormSubmit)}>
       <ul className={s.formList}>
-        <InputName key="name" name="name" register={register} errors={errors} />
-        <InputNumber
-          key="number"
-          name="number"
-          register={register}
-          errors={errors}
-        />
-      </ul>
-      {!additionalInfo ? (
-        <ButtonSecondary
-          onClick={() => setAdditionalInfo(true)}
-          children={'Add more'}
-        />
-      ) : (
-        <>
-          <ul className={s.formList}>
-            <InputEmail
-              key="email"
-              name="email"
-              register={register}
-              errors={errors}
-            />
-            <InputSkype key="skype" name="skype" register={register} />
-            <InputTelegram key="telegram" name="telegram" register={register} />
-            <SelectGroup key="group" name="group" register={register} />
+        <li>
+          <ul>
+            <InputName key="name" name="name" register={register} errors={errors} />
+            <InputNumber key="number" name="number" register={register} errors={errors} />
           </ul>
-          <ButtonSecondary
-            onClick={() => setAdditionalInfo(false)}
-            children={'Hide'}
-          />
-        </>
-      )}
-      <button className={s.button} type="submit">
-        Add contact
-      </button>
+        </li>
+        {!additionalInfo ? (
+          <li className={s.buttonItem}>
+            <ButtonSecondary onClick={() => setAdditionalInfo(true)} children={'add info'} />
+          </li>
+        ) : (
+          <>
+            <li>
+              <ul>
+                <InputEmail key="email" name="email" register={register} errors={errors} />
+                <InputSkype key="skype" name="skype" register={register} />
+                <InputTelegram key="telegram" name="telegram" register={register} />
+                <SelectGroup key="group" name="group" register={register} />
+              </ul>
+            </li>
+            <li className={s.buttonItem}>
+              <ButtonSecondary onClick={() => setAdditionalInfo(false)} children={'hide'} />
+            </li>
+          </>
+        )}
+      </ul>
+      <IconButton type="submit" aria-label="Кнопка 'Добавить контакт'">
+        <IconContext.Provider value={{ className: `${s.reactIcons}` }}>
+          <MdDone />
+        </IconContext.Provider>
+      </IconButton>
     </form>
   );
 };

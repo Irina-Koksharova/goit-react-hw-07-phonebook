@@ -1,8 +1,14 @@
+import { MdEmail } from 'react-icons/md';
+import { IconContext } from 'react-icons';
 import s from './InputEmail.module.css';
 
 const InputEmail = ({ name, register, errors }) => {
   return (
-    <li>
+    <li className={s.item}>
+      <IconContext.Provider value={{ className: `${s.reactIcons}` }}>
+        <MdEmail />
+      </IconContext.Provider>
+
       <input
         className={s.input}
         id={name}

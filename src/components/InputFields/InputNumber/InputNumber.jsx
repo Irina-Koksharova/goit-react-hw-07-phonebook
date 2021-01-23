@@ -1,9 +1,15 @@
+import { MdLocalPhone } from 'react-icons/md';
+import { IconContext } from 'react-icons';
 import { ErrorMessage } from '@hookform/error-message';
 import s from './InputNumber.module.css';
 
 const InputNumber = ({ name, register, errors }) => {
   return (
-    <li>
+    <li className={s.item}>
+      <IconContext.Provider value={{ className: `${s.reactIcons}` }}>
+        <MdLocalPhone />
+      </IconContext.Provider>
+
       <input
         className={s.input}
         id={name}

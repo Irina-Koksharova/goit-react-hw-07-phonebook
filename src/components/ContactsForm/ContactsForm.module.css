@@ -8,18 +8,8 @@
   flex-direction: column;
 }
 
-.button {
-  align-self: center;
-  min-width: 100px;
-  min-height: 30px;
-  font-size: 12px;
-  border-radius: 4px;
-  cursor: pointer;
-  outline: none;
-}
-
-.button:hover {
-  transform: scale(1.05);
+.buttonItem {
+  align-self: flex-end;
 }
 
 .toast {
@@ -34,4 +24,10 @@
 
 .progress {
   background: transparent;
+}
+
+.reactIcons {
+  width: 40px;
+  height: 40px;
+  fill: white;
 }
