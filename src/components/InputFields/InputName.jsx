@@ -1,6 +1,6 @@
 import { BsPersonFill } from 'react-icons/bs';
 import { IconContext } from 'react-icons';
-import s from './InputName.module.css';
+import s from './Input.module.css';
 
 const InputName = ({ name, register, errors }) => {
   return (

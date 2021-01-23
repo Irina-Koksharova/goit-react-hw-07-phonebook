@@ -11,21 +11,17 @@ const Filter = () => {
 
   return (
     <>
-      <label className={s.label} htmlFor="input">
-        Find contact by name
-      </label>
-
-      <IconContext.Provider value={{ className: `${s.reactIcons}` }}>
-        <FiSearch />
-      </IconContext.Provider>
-
       <input
         className={s.input}
         id="input"
         value={value}
         onChange={e => dispatch(changeFilter(e.target.value))}
+        placeholder="Find contact by name"
         autoComplete="off"
-      ></input>
+      />
+      <IconContext.Provider value={{ className: `${s.reactIcons}` }}>
+        <FiSearch />
+      </IconContext.Provider>
     </>
   );
 };

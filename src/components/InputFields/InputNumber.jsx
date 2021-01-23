@@ -1,7 +1,7 @@
 import { MdLocalPhone } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 import { ErrorMessage } from '@hookform/error-message';
-import s from './InputNumber.module.css';
+import s from './Input.module.css';
 
 const InputNumber = ({ name, register, errors }) => {
   return (

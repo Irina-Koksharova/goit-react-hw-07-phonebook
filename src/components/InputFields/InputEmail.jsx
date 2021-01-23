@@ -1,6 +1,6 @@
 import { MdEmail } from 'react-icons/md';
 import { IconContext } from 'react-icons';
-import s from './InputEmail.module.css';
+import s from './Input.module.css';
 
 const InputEmail = ({ name, register, errors }) => {
   return (

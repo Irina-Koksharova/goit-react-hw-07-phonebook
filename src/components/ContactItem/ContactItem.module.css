@@ -1,42 +1,28 @@
-.item {
+.contact {
   display: flex;
   justify-content: space-between;
   align-self: center;
 }
 
-.item:not(:last-child) {
-  margin-bottom: 10px;
-}
-
-.name,
-.number {
-  display: flex;
-  align-self: center;
-  margin: 0;
-  padding: 0;
-  font-size: 18px;
-  font-weight: 500;
+.contact:not(:last-child) {
+  margin-bottom: 15px;
 }
 
 .name {
-  width: 50%;
+  display: flex;
+  align-self: center;
+  margin: 0;
+  font-size: 16px;
 }
 
-.number {
-  font-size: 18px;
+.buttonList {
+  display: flex;
 }
 
-.button {
-  min-width: 50px;
-  min-height: 30px;
-  font-size: 12px;
-  font-weight: 500;
-  border-radius: 4px;
-  cursor: pointer;
-  outline: none;
+.buttonItem:not(:last-child) {
+  margin-right: 5px;
 }
 
-.button:hover,
-.button:focus {
-  transform: scale(1.05);
+.reactIcons {
+  fill: white;
 }

@@ -8,12 +8,12 @@ import { addContact } from '../../redux/actions';
 import { getContacts } from '../../redux/selectors';
 import { initialContactData } from '../../initial/contactsData';
 import notification from '../../services/notification';
-import InputName from '../InputFields/InputName';
-import InputNumber from '../InputFields/InputNumber';
+import InputName from '../InputFields/InputName.jsx';
+import InputNumber from '../InputFields/InputNumber.jsx';
 import ButtonSecondary from '../ButtonSecondary';
-import InputEmail from '../InputFields/InputEmail';
-import InputSkype from '../InputFields/InputSkype';
-import InputTelegram from '../InputFields/InputTelegram';
+import InputEmail from '../InputFields/InputEmail.jsx';
+import InputSkype from '../InputFields/InputSkype.jsx';
+import InputTelegram from '../InputFields/InputTelegram.jsx';
 import SelectGroup from '../SelectGroup';
 import IconButton from '../IconButton';
 
@@ -83,7 +83,11 @@ const ContactsForm = () => {
           </>
         )}
       </ul>
-      <IconButton type="submit" aria-label="Кнопка 'Добавить контакт'">
+      <IconButton
+        type="submit"
+        aria-label="Кнопка 'Добавить контакт'"
+        style={{ width: '55px', height: '55px', backgroundColor: 'rgb(5, 224, 104)' }}
+      >
         <IconContext.Provider value={{ className: `${s.reactIcons}` }}>
           <MdDone />
         </IconContext.Provider>

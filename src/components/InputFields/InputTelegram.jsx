@@ -1,12 +1,12 @@
-import { IoLogoSkype } from 'react-icons/io';
+import { FaTelegramPlane } from 'react-icons/fa';
 import { IconContext } from 'react-icons';
-import s from './InputSkype.module.css';
+import s from './Input.module.css';
 
-const InputSkype = ({ name, register }) => {
+const InputTelegram = ({ name, register }) => {
   return (
     <li className={s.item}>
       <IconContext.Provider value={{ className: `${s.reactIcons}` }}>
-        <IoLogoSkype />
+        <FaTelegramPlane />
       </IconContext.Provider>
 
       <input className={s.input} id={name} name={name} placeholder={name} autoComplete="off" ref={register}></input>
@@ -14,4 +14,4 @@ const InputSkype = ({ name, register }) => {
   );
 };
 
-export default InputSkype;
+export default InputTelegram;

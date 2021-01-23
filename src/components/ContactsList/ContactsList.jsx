@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from 'react-redux';
-import s from './ContactsList.module.css';
 import ContactItem from '../ContactItem/ContactItem';
 import { deleteContact, changeFilter } from '../../redux/actions';
 import { getVisibleContacts } from '../../redux/selectors';
@@ -13,15 +12,9 @@ const ContactsList = () => {
   };
 
   return (
-    <ul className={s.list}>
+    <ul>
       {contacts.map(({ id, name, number }) => (
-        <ContactItem
-          key={id}
-          id={id}
-          name={name}
-          number={number}
-          onDelete={onDelete}
-        />
+        <ContactItem key={id} id={id} name={name} number={number} onDelete={onDelete} />
       ))}
     </ul>
   );
