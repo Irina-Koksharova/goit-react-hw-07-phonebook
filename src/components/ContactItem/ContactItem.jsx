@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import { BiShowAlt } from 'react-icons/bi';
-// import { AiOutlineEdit } from 'react-icons/ai';
+import { AiOutlineEdit } from 'react-icons/ai';
 import { MdDelete } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 import s from './ContactItem.module.css';
 import IconButton from '../IconButton';
+import { iconButtonSecondary } from '../../styles/iconButton-inline-styles';
 
 const ContactItem = ({ id, name, onChange, onDelete }) => {
   return (
@@ -16,11 +16,11 @@ const ContactItem = ({ id, name, onChange, onDelete }) => {
           <IconButton
             type="button"
             onClick={() => onChange(id)}
-            aria-label="Кнопка 'Просмотреть контакт'"
-            style={{ width: '30px', height: '30px', backgroundColor: ' rgb(85, 83, 83)' }}
+            aria-label="Кнопка 'Редактировать контакт'"
+            style={iconButtonSecondary}
           >
             <IconContext.Provider value={{ className: `${s.reactIcons}` }}>
-              <BiShowAlt />
+              <AiOutlineEdit />
             </IconContext.Provider>
           </IconButton>
         </li>
@@ -29,24 +29,13 @@ const ContactItem = ({ id, name, onChange, onDelete }) => {
             type="button"
             onClick={() => onDelete(id)}
             aria-label="Кнопка 'Удалить контакт'"
-            style={{ width: '30px', height: '30px', backgroundColor: ' rgb(85, 83, 83)' }}
+            style={{ ...iconButtonSecondary, marginRight: '10px' }}
           >
             <IconContext.Provider value={{ className: `${s.reactIcons}` }}>
               <MdDelete />
             </IconContext.Provider>
           </IconButton>
         </li>
-        {/* <li className={s.buttonItem}>
-          <IconButton
-            type="button"
-            onClick={() => onDelete(id)}
-            aria-label="Кнопка 'Удалить контакт'"
-            style={{ width: '30px', height: '30px', backgroundColor: ' rgb(85, 83, 83)' }}>
-            <IconContext.Provider value={{ className: `${s.reactIcons}` }}>
-              <MdDelete />
-            </IconContext.Provider>
-          </IconButton>
-        </li> */}
       </ul>
     </li>
   );
@@ -55,6 +44,7 @@ const ContactItem = ({ id, name, onChange, onDelete }) => {
 ContactItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
 };
 

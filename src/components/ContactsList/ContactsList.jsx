@@ -4,9 +4,17 @@ import { useForm } from 'react-hook-form';
 import { MdDone } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 import s from './ContactsList.module.css';
-import { deleteContact, changeFilter, changeContact } from '../../redux/actions';
+import {
+  deleteContact,
+  changeFilter,
+  changeContact,
+} from '../../redux/actions';
 import { getVisibleContacts } from '../../redux/selectors';
 import ContactItem from '../ContactItem/ContactItem';
+import Container from '../Container';
+import { popUpContainer, isShown } from '../../styles/container-inline-styles';
+import Title from '../Title';
+import { titleMain } from '../../styles/title-inline-styles';
 import InputName from '../InputFields/InputName.jsx';
 import InputNumber from '../InputFields/InputNumber.jsx';
 import InputEmail from '../InputFields/InputEmail.jsx';
@@ -14,9 +22,11 @@ import InputSkype from '../InputFields/InputSkype.jsx';
 import InputTelegram from '../InputFields/InputTelegram.jsx';
 import SelectGroup from '../SelectGroup';
 import IconButton from '../IconButton';
+import { iconButtonPrimary } from '../../styles/iconButton-inline-styles';
 
 const ContactsList = () => {
   const [selectedContact, setSelectedContact] = useState(null);
+  const [currentStyle, setCurrentStyle] = useState(popUpContainer);
   const contacts = useSelector(getVisibleContacts);
   const dispatch = useDispatch();
   const {
@@ -31,20 +41,20 @@ const ContactsList = () => {
   });
 
   useEffect(() => {
+    const setInputValues = contact => {
+      return Object.entries(contact)
+        .slice(1, 7)
+        .forEach(property => setValue(property[0], property[1]));
+    };
     if (selectedContact) {
-      setValue('name', selectedContact.name);
-      setValue('number', selectedContact.number);
-      setValue('email', selectedContact.email);
-      setValue('skype', selectedContact.skype);
-      setValue('telegram', selectedContact.telegram);
-      setValue('group', selectedContact.group);
+      setInputValues(selectedContact);
     }
   }, [selectedContact, setValue]);
 
   useEffect(() => {
     if (isSubmitSuccessful) {
       reset();
-      setSelectedContact(null);
+      setCurrentStyle(popUpContainer);
     }
   }, [isSubmitSuccessful, reset]);
 
@@ -53,8 +63,9 @@ const ContactsList = () => {
     dispatch(changeFilter(''));
   };
 
-  const showContact = id => {
+  const onChange = id => {
     setSelectedContact(contacts.find(contact => contact.id === id));
+    setCurrentStyle({ ...popUpContainer, ...isShown });
   };
 
   const onFormSubmit = data => {
@@ -65,17 +76,40 @@ const ContactsList = () => {
 
   return (
     <>
-      <ul>
+      <ul className={s.list}>
         {contacts.map(({ id, name, number }) => (
-          <ContactItem key={id} id={id} name={name} number={number} onChange={showContact} onDelete={onDelete} />
+          <ContactItem
+            key={id}
+            id={id}
+            name={name}
+            number={number}
+            onChange={onChange}
+            onDelete={onDelete}
+          />
         ))}
       </ul>
-      {selectedContact && (
-        <form onSubmit={handleSubmit(onFormSubmit)}>
+      <Container style={currentStyle}>
+        <Title children={'Contact details'} style={titleMain} />
+        <form className={s.form} onSubmit={handleSubmit(onFormSubmit)}>
           <ul>
-            <InputName key="name" name="name" register={register} errors={errors} />
-            <InputNumber key="number" name="number" register={register} errors={errors} />
-            <InputEmail key="email" name="email" register={register} errors={errors} />
+            <InputName
+              key="name"
+              name="name"
+              register={register}
+              errors={errors}
+            />
+            <InputNumber
+              key="number"
+              name="number"
+              register={register}
+              errors={errors}
+            />
+            <InputEmail
+              key="email"
+              name="email"
+              register={register}
+              errors={errors}
+            />
             <InputSkype key="skype" name="skype" register={register} />
             <InputTelegram key="telegram" name="telegram" register={register} />
             <SelectGroup key="group" name="group" register={register} />
@@ -83,14 +117,18 @@ const ContactsList = () => {
           <IconButton
             type="submit"
             aria-label="Кнопка 'Добавить контакт'"
-            style={{ width: '55px', height: '55px', backgroundColor: 'rgb(5, 224, 104)' }}
+            style={{
+              ...iconButtonPrimary,
+              marginTop: '50px',
+              alignSelf: 'center',
+            }}
           >
             <IconContext.Provider value={{ className: `${s.reactIcons}` }}>
               <MdDone />
             </IconContext.Provider>
           </IconButton>
         </form>
-      )}
+      </Container>
     </>
   );
 };

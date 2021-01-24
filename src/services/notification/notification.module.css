@@ -1,10 +1,10 @@
 .toast {
-  height: 65px;
-  top: 245px;
+  height: 100px;
+  top: 230px;
   left: 57px;
   text-align: center;
-  background-color: rgb(138, 81, 81);
-  color: white;
+  background-color: black;
+  color: red;
   border-radius: 4px;
 }
 
