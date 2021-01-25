@@ -63,7 +63,11 @@ const ContactsForm = () => {
             <InputName key="name" name="name" register={register} errors={errors} />
             <InputNumber key="number" name="number" register={register} errors={errors} />
           </ul>
-          <ButtonSecondary onClick={() => setAdditionalInfo(true)} children={'add info'} />
+          <ButtonSecondary
+            onClick={() => setAdditionalInfo(true)}
+            children={'add info'}
+            aria-label='Кнопка "Добавить информацию"'
+          />
         </>
       ) : (
         <>
@@ -75,7 +79,11 @@ const ContactsForm = () => {
             <InputTelegram key="telegram" name="telegram" register={register} />
             <SelectGroup key="group" name="group" register={register} />
           </ul>
-          <ButtonSecondary onClick={() => setAdditionalInfo(false)} children={'hide'} />
+          <ButtonSecondary
+            onClick={() => setAdditionalInfo(false)}
+            children={'hide'}
+            aria-label='Кнопка "Скрыть"'
+          />
         </>
       )}
       <IconButton type="submit" aria-label="Кнопка 'Добавить контакт'" style={iconButtonPrimary}>

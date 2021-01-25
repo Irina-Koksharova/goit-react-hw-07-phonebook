@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { BsPersonFill } from 'react-icons/bs';
 import { IconContext } from 'react-icons';
 import s from './Input.module.css';
@@ -20,6 +21,12 @@ const InputName = ({ name, register, errors }) => {
       {errors.name && <p className={s.errorMessage}>This field cannot be empty</p>}
     </li>
   );
+};
+
+InputName.propTypes = {
+  name: PropTypes.string.isRequired,
+  register: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 export default InputName;

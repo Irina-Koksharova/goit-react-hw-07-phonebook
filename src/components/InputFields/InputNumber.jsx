@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { MdLocalPhone } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 import { ErrorMessage } from '@hookform/error-message';
@@ -41,6 +42,12 @@ const InputNumber = ({ name, register, errors }) => {
       />
     </li>
   );
+};
+
+InputNumber.propTypes = {
+  name: PropTypes.string.isRequired,
+  register: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 export default InputNumber;

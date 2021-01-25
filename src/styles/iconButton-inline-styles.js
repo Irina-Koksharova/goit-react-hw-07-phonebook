@@ -1,6 +1,6 @@
 const iconButtonPrimary = {
-  width: '50px',
-  height: '50px',
+  width: '40px',
+  height: '40px',
   backgroundColor: 'rgb(5, 224, 104)',
 };
 

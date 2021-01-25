@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { MdEmail } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 import s from './Input.module.css';
@@ -24,6 +25,12 @@ const InputEmail = ({ name, register, errors }) => {
       {errors.email && <p className={s.errorMessage}>Email is not valid</p>}
     </li>
   );
+};
+
+InputEmail.propTypes = {
+  name: PropTypes.string.isRequired,
+  register: PropTypes.func.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 export default InputEmail;
