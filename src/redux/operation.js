@@ -16,12 +16,14 @@ import {
 
 axios.defaults.baseURL = 'http://localhost:4040';
 
-const fetchContacts = () => dispatch => {
+const fetchContacts = () => async dispatch => {
   dispatch(fetchContactsRequest());
-  axios
-    .get('/contacts')
-    .then(({ data }) => dispatch(fetchContactsSuccess(data)))
-    .catch(error => dispatch(fetchContactsError(error.message)));
+  try {
+    const { data } = await axios.get('/contacts');
+    dispatch(fetchContactsSuccess(data));
+  } catch ({ message }) {
+    dispatch(fetchContactsError(message));
+  }
 };
 
 const addContact = (
@@ -31,7 +33,7 @@ const addContact = (
   skype,
   telegram,
   group,
-) => dispatch => {
+) => async dispatch => {
   const contact = {
     name,
     number,
@@ -41,20 +43,22 @@ const addContact = (
     group,
   };
   dispatch(addContactRequest());
-  axios
-    .post('/contacts', contact)
-    .then(({ data }) => {
-      dispatch(addContactSuccess(data));
-    })
-    .catch(error => dispatch(addContactError(error)));
+  try {
+    const { data } = await axios.post('/contacts', contact);
+    dispatch(addContactSuccess(data));
+  } catch ({ message }) {
+    dispatch(addContactError(message));
+  }
 };
 
-const deleteContact = id => dispatch => {
+const deleteContact = id => async dispatch => {
   dispatch(deleteContactRequest());
-  axios
-    .delete(`/contacts/${id}`)
-    .then(() => dispatch(deleteContactSuccess(id)))
-    .catch(error => dispatch(deleteContactError(error)));
+  try {
+    await axios.delete(`/contacts/${id}`);
+    dispatch(deleteContactSuccess(id));
+  } catch ({ message }) {
+    dispatch(deleteContactError(message));
+  }
 };
 
 const updateContact = (
@@ -65,13 +69,15 @@ const updateContact = (
   skype,
   telegram,
   group,
-) => dispatch => {
+) => async dispatch => {
   const updatedContact = { name, number, email, skype, telegram, group };
   dispatch(updateContactRequest());
-  axios
-    .patch(`/contacts/${id}`, updatedContact)
-    .then(({ data }) => dispatch(updateContactSuccess(data)))
-    .catch(error => dispatch(updateContactError(error)));
+  try {
+    const { data } = await axios.patch(`/contacts/${id}`, updatedContact);
+    dispatch(updateContactSuccess(data));
+  } catch ({ message }) {
+    dispatch(updateContactError(message));
+  }
 };
 
 export { fetchContacts, addContact, deleteContact, updateContact };

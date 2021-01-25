@@ -43,4 +43,11 @@ const loadingReducer = createReducer(false, {
   [updateContactError]: () => false,
 });
 
-export { itemsReducer, filterReducer, loadingReducer };
+const errorReducer = createReducer(null, {
+  [fetchContactsError]: (_, { payload }) => payload,
+  [addContactError]: (_, { payload }) => payload,
+  [deleteContactError]: (_, { payload }) => payload,
+  [updateContactError]: (_, { payload }) => payload,
+});
+
+export { itemsReducer, filterReducer, loadingReducer, errorReducer };
