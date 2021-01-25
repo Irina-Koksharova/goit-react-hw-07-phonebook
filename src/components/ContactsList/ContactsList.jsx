@@ -39,25 +39,9 @@ const ContactsList = () => {
   });
 
   useEffect(() => {
-    const setInputValues = ({
-      name,
-      number,
-      email,
-      skype,
-      telegram,
-      group,
-    }) => {
-      const inputFields = {
-        name,
-        number,
-        email,
-        skype,
-        telegram,
-        group,
-      };
-      return Object.entries(inputFields).forEach(prop =>
-        setValue(prop[0], prop[1]),
-      );
+    const setInputValues = ({ name, number, email, skype, telegram, group }) => {
+      const inputFields = { name, number, email, skype, telegram, group };
+      return Object.entries(inputFields).forEach(prop => setValue(prop[0], prop[1]));
     };
     if (selectedContact) {
       setInputValues(selectedContact);
@@ -107,24 +91,9 @@ const ContactsList = () => {
         <Title children={'Contact details'} style={titleMain} />
         <form className={s.form} onSubmit={handleSubmit(onFormSubmit)}>
           <ul>
-            <InputName
-              key="name"
-              name="name"
-              register={register}
-              errors={errors}
-            />
-            <InputNumber
-              key="number"
-              name="number"
-              register={register}
-              errors={errors}
-            />
-            <InputEmail
-              key="email"
-              name="email"
-              register={register}
-              errors={errors}
-            />
+            <InputName key="name" name="name" register={register} errors={errors} />
+            <InputNumber key="number" name="number" register={register} errors={errors} />
+            <InputEmail key="email" name="email" register={register} errors={errors} />
             <InputSkype key="skype" name="skype" register={register} />
             <InputTelegram key="telegram" name="telegram" register={register} />
             <SelectGroup key="group" name="group" register={register} />

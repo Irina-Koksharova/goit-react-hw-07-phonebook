@@ -35,7 +35,7 @@ const ContactsForm = () => {
 
   useEffect(() => {
     if (isSubmitSuccessful) {
-      reset({ ...initialContactData });
+      reset(initialContactData);
       setAdditionalInfo(false);
     }
   }, [isSubmitSuccessful, reset]);
@@ -57,63 +57,28 @@ const ContactsForm = () => {
 
   return (
     <form className={s.form} onSubmit={handleSubmit(onFormSubmit)}>
-      <ul className={s.formList}>
-        <li>
-          <ul>
-            <InputName
-              key="name"
-              name="name"
-              register={register}
-              errors={errors}
-            />
-            <InputNumber
-              key="number"
-              name="number"
-              register={register}
-              errors={errors}
-            />
+      {!additionalInfo ? (
+        <>
+          <ul className={s.formList}>
+            <InputName key="name" name="name" register={register} errors={errors} />
+            <InputNumber key="number" name="number" register={register} errors={errors} />
           </ul>
-        </li>
-        {!additionalInfo ? (
-          <li className={s.buttonItem}>
-            <ButtonSecondary
-              onClick={() => setAdditionalInfo(true)}
-              children={'add info'}
-            />
-          </li>
-        ) : (
-          <>
-            <li>
-              <ul>
-                <InputEmail
-                  key="email"
-                  name="email"
-                  register={register}
-                  errors={errors}
-                />
-                <InputSkype key="skype" name="skype" register={register} />
-                <InputTelegram
-                  key="telegram"
-                  name="telegram"
-                  register={register}
-                />
-                <SelectGroup key="group" name="group" register={register} />
-              </ul>
-            </li>
-            <li className={s.buttonItem}>
-              <ButtonSecondary
-                onClick={() => setAdditionalInfo(false)}
-                children={'hide'}
-              />
-            </li>
-          </>
-        )}
-      </ul>
-      <IconButton
-        type="submit"
-        aria-label="Кнопка 'Добавить контакт'"
-        style={iconButtonPrimary}
-      >
+          <ButtonSecondary onClick={() => setAdditionalInfo(true)} children={'add info'} />
+        </>
+      ) : (
+        <>
+          <ul className={s.formList}>
+            <InputName key="name" name="name" register={register} errors={errors} />
+            <InputNumber key="number" name="number" register={register} errors={errors} />
+            <InputEmail key="email" name="email" register={register} errors={errors} />
+            <InputSkype key="skype" name="skype" register={register} />
+            <InputTelegram key="telegram" name="telegram" register={register} />
+            <SelectGroup key="group" name="group" register={register} />
+          </ul>
+          <ButtonSecondary onClick={() => setAdditionalInfo(false)} children={'hide'} />
+        </>
+      )}
+      <IconButton type="submit" aria-label="Кнопка 'Добавить контакт'" style={iconButtonPrimary}>
         <IconContext.Provider value={{ className: `${s.reactIcons}` }}>
           <MdDone />
         </IconContext.Provider>
