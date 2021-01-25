@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getContacts } from '../../redux/selectors';
@@ -6,15 +7,21 @@ import {
   mainContainer,
   subContainer,
 } from '../../styles/container-inline-styles';
+import { fetchContacts } from '../../redux/operation';
+import { titleMain } from '../../styles/title-inline-styles';
 import Container from '../Container';
 import Title from '../Title';
-import { titleMain } from '../../styles/title-inline-styles';
 import ContactsForm from '../ContactsForm';
 import Filter from '../Filter';
 import ContactsList from '../ContactsList';
 
 const App = () => {
   const contacts = useSelector(getContacts);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <Container style={mainContainer}>

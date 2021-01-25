@@ -1,15 +1,46 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { addContact, deleteContact, changeFilter, changeContact } from './actions';
-import { initialContacts } from '../initial/contacts.js';
+import {
+  fetchContactsRequest,
+  fetchContactsSuccess,
+  fetchContactsError,
+  addContactRequest,
+  addContactSuccess,
+  addContactError,
+  deleteContactRequest,
+  deleteContactSuccess,
+  deleteContactError,
+  updateContactRequest,
+  updateContactSuccess,
+  updateContactError,
+  changeFilter,
+} from './actions';
 
-const itemsReducer = createReducer(initialContacts, {
-  [addContact]: (state, { payload }) => [payload, ...state],
-  [changeContact]: (state, { payload }) => state.map(contact => (contact.id === payload.id ? payload : contact)),
-  [deleteContact]: (state, { payload }) => state.filter(({ id }) => id !== payload),
+const itemsReducer = createReducer([], {
+  [fetchContactsSuccess]: (_, { payload }) => payload,
+  [addContactSuccess]: (state, { payload }) => [payload, ...state],
+  [updateContactSuccess]: (state, { payload }) =>
+    state.map(contact => (contact.id === payload.id ? payload : contact)),
+  [deleteContactSuccess]: (state, { payload }) =>
+    state.filter(({ id }) => id !== payload),
 });
 
 const filterReducer = createReducer('', {
-  [changeFilter]: (state, { payload }) => payload,
+  [changeFilter]: (_, { payload }) => payload,
 });
 
-export { itemsReducer, filterReducer };
+const loadingReducer = createReducer(false, {
+  [fetchContactsRequest]: () => true,
+  [fetchContactsSuccess]: () => false,
+  [fetchContactsError]: () => false,
+  [addContactRequest]: () => true,
+  [addContactSuccess]: () => false,
+  [addContactError]: () => false,
+  [deleteContactRequest]: () => true,
+  [deleteContactSuccess]: () => false,
+  [deleteContactError]: () => false,
+  [updateContactRequest]: () => true,
+  [updateContactSuccess]: () => false,
+  [updateContactError]: () => false,
+});
+
+export { itemsReducer, filterReducer, loadingReducer };

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { getState, saveState } from '../services/useLocalStorage';
+// import { getState, saveState } from '../services/useLocalStorage';
 import { itemsReducer, filterReducer } from './reducers';
 
 const store = configureStore({
@@ -8,16 +8,16 @@ const store = configureStore({
     filter: filterReducer,
   },
   devTools: process.env.NODE_ENV === 'development',
-  preloadedState: {
-    items: getState().contacts,
-    filter: '',
-  },
+  // preloadedState: {
+  //   items: getState().contacts,
+  //   filter: '',
+  // },
 });
 
-store.subscribe(() => {
-  saveState({
-    contacts: store.getState().items,
-  });
-});
+// store.subscribe(() => {
+//   saveState({
+//     contacts: store.getState().items,
+//   });
+// });
 
 export default store;

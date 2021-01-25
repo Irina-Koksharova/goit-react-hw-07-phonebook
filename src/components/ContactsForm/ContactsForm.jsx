@@ -4,9 +4,10 @@ import { useForm } from 'react-hook-form';
 import { MdDone } from 'react-icons/md';
 import { IconContext } from 'react-icons';
 import s from './ContactsForm.module.css';
-import { addContact } from '../../redux/actions';
+import { addContact } from '../../redux/operation';
 import { getContacts } from '../../redux/selectors';
 import { initialContactData } from '../../initial/contactsData';
+import { iconButtonPrimary } from '../../styles/iconButton-inline-styles';
 import notification from '../../services/notification';
 import InputName from '../InputFields/InputName.jsx';
 import InputNumber from '../InputFields/InputNumber.jsx';
@@ -16,7 +17,6 @@ import InputSkype from '../InputFields/InputSkype.jsx';
 import InputTelegram from '../InputFields/InputTelegram.jsx';
 import SelectGroup from '../SelectGroup';
 import IconButton from '../IconButton';
-import { iconButtonPrimary } from '../../styles/iconButton-inline-styles';
 
 const ContactsForm = () => {
   const contactsList = useSelector(getContacts);
